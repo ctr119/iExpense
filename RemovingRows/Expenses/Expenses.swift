@@ -3,7 +3,23 @@ import SwiftUI
 //class Expenses: ObservableObject {
 @Observable
 class Expenses {
-    var items = [ExpenseItem]()
+    var items = [ExpenseItem]() {
+        didSet {
+            if let data = try? JSONEncoder().encode(items) {
+                UserDefaults.standard.setValue(data, forKey: "Items")
+            }
+        }
+    }
+    
+    init() {
+        if let itemsData = UserDefaults.standard.data(forKey: "Items"),
+           let items = try? JSONDecoder().decode([ExpenseItem].self, from: itemsData) {
+            self.items = items
+            return
+        }
+        
+        self.items = []
+    }
 }
 
 extension Expenses {

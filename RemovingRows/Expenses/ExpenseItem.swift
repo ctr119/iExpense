@@ -1,12 +1,12 @@
 import Foundation
 
-struct ExpenseItem: Identifiable {
-    enum Kind: String, CaseIterable {
+struct ExpenseItem: Identifiable, Codable {
+    enum Kind: String, CaseIterable, Codable {
         case business
         case personal
     }
     
-    let id = UUID()
+    var id = UUID()
     let name: String
     let type: Kind
     let amount: Double
