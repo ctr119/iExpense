@@ -4,6 +4,8 @@ struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var isAddExpenseScreenPresented = false
     
+    private let deviceRepository = DeviceRepository()
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -31,6 +33,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isAddExpenseScreenPresented, content: {
             AddView(expenses: expenses)
+                .environmentObject(deviceRepository)
         })
     }
     
@@ -46,7 +49,7 @@ struct ContentView: View {
             
             Spacer()
             
-            Text(data.amount, format: .currency(code: "USD"))
+            Text(data.amount, format: .currency(code: deviceRepository.getCurrencyCode()))
         }
     }
 }
