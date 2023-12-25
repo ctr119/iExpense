@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var numbers = [Int]()
-    @State private var currentNumber = 1
+    @State private var expenses = Expenses()
     
     var body: some View {
         NavigationStack {
@@ -14,21 +13,20 @@ struct ContentView: View {
                 ///     we must put the items inside a ForEach.
                 
                 List {
-                    ForEach(numbers, id: \.self) {
-                        Text("Row \($0)")
+                    ForEach(expenses.items) {
+                        Text("Expense \($0.name)")
                     }
                     .onDelete { indexSet in
-                        numbers.remove(atOffsets: indexSet)
+                        expenses.items.remove(atOffsets: indexSet)
                     }
                 }
-                
-                Button("Add Number") {
-                    numbers.append(currentNumber)
-                    currentNumber += 1
+                .navigationTitle("iExpense")
+                .toolbar {
+                    Button("Add Expense", systemImage: "plus") {
+                        let expense = ExpenseItem(name: "Test", type: .personal, amount: 5)
+                        expenses.items.append(expense)
+                    }
                 }
-            }
-            .toolbar {
-                EditButton()
             }
         }
     }
