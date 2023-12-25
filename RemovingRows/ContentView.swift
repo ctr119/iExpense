@@ -15,7 +15,7 @@ struct ContentView: View {
                 
                 List {
                     ForEach(expenses.items) {
-                        Text("Expense \($0.name)")
+                        expenseRow($0)
                     }
                     .onDelete { indexSet in
                         expenses.items.remove(atOffsets: indexSet)
@@ -32,6 +32,22 @@ struct ContentView: View {
         .sheet(isPresented: $isAddExpenseScreenPresented, content: {
             AddView(expenses: expenses)
         })
+    }
+    
+    private func expenseRow(_ data: ExpenseItem) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("\(data.name)")
+                    .font(.body)
+                
+                Text("\(data.type.rawValue)")
+                    .font(.caption.italic())
+            }
+            
+            Spacer()
+            
+            Text(data.amount, format: .currency(code: "USD"))
+        }
     }
 }
 

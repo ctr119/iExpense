@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct AddView: View {
+    
+    /// @Environment(\.presentationMode) var presentationMode
+    /// ...
+    /// presentationMode.wrappedValue.dismiss()
+    @Environment(\.dismiss) var dismiss
+    
     @State private var name = ""
     @State private var kind: ExpenseItem.Kind = .personal
     @State private var amount = 0.0
@@ -29,6 +35,7 @@ struct AddView: View {
             Button("Save") {
                 let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
                 expenses.items.append(newExpense)
+                dismiss()
             }
         }
     }
