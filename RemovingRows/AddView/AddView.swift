@@ -4,6 +4,8 @@ struct AddView: View {
     @State private var name = ""
     @State private var kind: ExpenseItem.Kind = .personal
     @State private var amount = 0.0
+    
+    var expenses: Expenses
 
     let types = ["Business", "Personal"]
 
@@ -27,5 +29,5 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView()
+    AddView(expenses: .mock)
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var expenses = Expenses()
+    @State private var isAddExpenseScreenPresented = false
     
     var body: some View {
         NavigationStack {
@@ -23,12 +24,14 @@ struct ContentView: View {
                 .navigationTitle("iExpense")
                 .toolbar {
                     Button("Add Expense", systemImage: "plus") {
-                        let expense = ExpenseItem(name: "Test", type: .personal, amount: 5)
-                        expenses.items.append(expense)
+                        isAddExpenseScreenPresented = true
                     }
                 }
             }
         }
+        .sheet(isPresented: $isAddExpenseScreenPresented, content: {
+            AddView(expenses: expenses)
+        })
     }
 }
 
