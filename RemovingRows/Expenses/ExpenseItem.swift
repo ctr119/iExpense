@@ -1,7 +1,7 @@
 import Foundation
 
 struct ExpenseItem: Identifiable {
-    enum Kind: String {
+    enum Kind: String, CaseIterable {
         case business
         case personal
     }
