@@ -14,35 +14,9 @@ struct ExpensesView: View {
                 ///     we must put the items inside a ForEach.
                 
                 List {
-                    Section {
-                        ForEach(viewModel.personalExpenses) {
-                            ExpenseRowView(
-                                display: $0.toExpenseRowDisplay(
-                                    currencyCode: viewModel.currencyCode
-                                )
-                            )
-                        }
-                        .onDelete { indexSet in
-                            viewModel.removeExpenses(from: indexSet, ofKind: .personal)
-                        }
-                    } header: {
-                        Text("Personal expenses")
-                    }
+                    personalSection
                 
-                    Section {
-                        ForEach(viewModel.businessExpenses) {
-                            ExpenseRowView(
-                                display: $0.toExpenseRowDisplay(
-                                    currencyCode: viewModel.currencyCode
-                                )
-                            )
-                        }
-                        .onDelete { indexSet in
-                            viewModel.removeExpenses(from: indexSet, ofKind: .business)
-                        }
-                    } header: {
-                        Text("Business expenses")
-                    }
+                    businessSection
                 }
             }
             .navigationTitle("iExpense")
@@ -58,6 +32,42 @@ struct ExpensesView: View {
         .sheet(isPresented: $isAddExpenseScreenPresented, content: {
             AddExpensesView(sharedViewModel: viewModel)
         })
+    }
+    
+    @ViewBuilder
+    private var personalSection: some View {
+        Section {
+            ForEach(viewModel.personalExpenses) {
+                ExpenseRowView(
+                    display: $0.toExpenseRowDisplay(
+                        currencyCode: viewModel.currencyCode
+                    )
+                )
+            }
+            .onDelete { indexSet in
+                viewModel.removeExpenses(from: indexSet, ofKind: .personal)
+            }
+        } header: {
+            Text("Personal expenses")
+        }
+    }
+    
+    @ViewBuilder
+    private var businessSection: some View {
+        Section {
+            ForEach(viewModel.businessExpenses) {
+                ExpenseRowView(
+                    display: $0.toExpenseRowDisplay(
+                        currencyCode: viewModel.currencyCode
+                    )
+                )
+            }
+            .onDelete { indexSet in
+                viewModel.removeExpenses(from: indexSet, ofKind: .business)
+            }
+        } header: {
+            Text("Business expenses")
+        }
     }
 }
 
