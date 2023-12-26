@@ -10,7 +10,10 @@ struct AddExpensesView: View {
     
     @State private var name = ""
     @State private var kind: ExpenseItem.Kind = .personal
-    @State private var amount = 0.0
+    @State private var amount: Double? = nil
+    
+    @State private var isAlertErrorVisible = false
+    @State private var errorMessage = ""
     
     var sharedViewModel: ExpensesViewModel
     
@@ -31,12 +34,31 @@ struct AddExpensesView: View {
             .navigationTitle("Add New Expense")
             .toolbar {
                 Button("Save") {
+                    guard !name.isEmpty else {
+                        showError(message: "You have to specify a name")
+                        return
+                    }
+                    guard let amount, amount > 0 else {
+                        showError(message: "The amount has to be greater than Zero")
+                        return
+                    }
+                    
                     let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
                     sharedViewModel.add(expenses: [newExpense])
                     dismiss()
                 }
             }
+            .alert("Oops! Something's wrong", isPresented: $isAlertErrorVisible) {
+                Button("Ok") {}
+            } message: {
+                Text(errorMessage)
+            }
         }
+    }
+    
+    private func showError(message: String) {
+        errorMessage = message
+        isAlertErrorVisible = true
     }
 }
 
