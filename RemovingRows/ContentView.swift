@@ -38,7 +38,9 @@ struct ContentView: View {
     }
     
     private func expenseRow(_ data: ExpenseItem) -> some View {
-        HStack {
+        let display = display(for: data.amount)
+        
+        return HStack {
             VStack(alignment: .leading) {
                 Text("\(data.name)")
                     .font(.body)
@@ -49,8 +51,24 @@ struct ContentView: View {
             
             Spacer()
             
+            Text(display.emoji)
+            
             Text(data.amount, format: .currency(code: deviceRepository.getCurrencyCode()))
+                .foregroundStyle(display.color)
+                .bold(display.color == .red)
         }
+    }
+    
+    private func display(for amount: Double) -> (emoji: String, color: Color) {
+        if amount <= 10 {
+            return ("☑️", .green)
+        }
+        
+        if amount <= 100 {
+            return ("💸", .primary)
+        }
+        
+        return ("🔥", .red)
     }
 }
 

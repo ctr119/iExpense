@@ -27,7 +27,8 @@ extension Expenses {
         let exp = Expenses()
         exp.items = [
             ExpenseItem(name: "Restaurant", type: .personal, amount: 24.3),
-            ExpenseItem(name: "Transport", type: .business, amount: 4.33)
+            ExpenseItem(name: "Transport", type: .business, amount: 4.33),
+            ExpenseItem(name: "Hotel", type: .business, amount: 400)
         ]
         return exp
     }
