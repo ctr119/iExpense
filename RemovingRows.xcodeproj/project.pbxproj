@@ -11,6 +11,9 @@
 		2071DB6E2B3A3667009C027C /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB6D2B3A3667009C027C /* ExpensesViewModel.swift */; };
 		2071DB712B3A3FFA009C027C /* AddExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB702B3A3FFA009C027C /* AddExpensesView.swift */; };
 		2071DB732B3A493E009C027C /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB722B3A493E009C027C /* DeviceRepository.swift */; };
+		2071DB7C2B3A561E009C027C /* ExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB7B2B3A561E009C027C /* ExpensesDataSource.swift */; };
+		2071DB7E2B3A574A009C027C /* ExpensesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB7D2B3A574A009C027C /* ExpensesRepository.swift */; };
+		2071DB812B3A57F8009C027C /* LoadExpensesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2071DB802B3A57F8009C027C /* LoadExpensesUseCase.swift */; };
 		20C80D352B2FA9020050DF44 /* RemovingRowsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C80D342B2FA9020050DF44 /* RemovingRowsApp.swift */; };
 		20C80D372B2FA9020050DF44 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C80D362B2FA9020050DF44 /* ExpensesView.swift */; };
 		20C80D392B2FA9020050DF44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C80D382B2FA9020050DF44 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		2071DB6D2B3A3667009C027C /* ExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
 		2071DB702B3A3FFA009C027C /* AddExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesView.swift; sourceTree = "<group>"; };
 		2071DB722B3A493E009C027C /* DeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRepository.swift; sourceTree = "<group>"; };
+		2071DB7B2B3A561E009C027C /* ExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDataSource.swift; sourceTree = "<group>"; };
+		2071DB7D2B3A574A009C027C /* ExpensesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesRepository.swift; sourceTree = "<group>"; };
+		2071DB802B3A57F8009C027C /* LoadExpensesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadExpensesUseCase.swift; sourceTree = "<group>"; };
 		20C80D312B2FA9020050DF44 /* RemovingRows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemovingRows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C80D342B2FA9020050DF44 /* RemovingRowsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovingRowsApp.swift; sourceTree = "<group>"; };
 		20C80D362B2FA9020050DF44 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
@@ -109,7 +115,8 @@
 		2071DB772B3A5430009C027C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				2071DB6B2B3A35E4009C027C /* ExpenseItem.swift */,
+				2071DB7F2B3A57E6009C027C /* Model */,
+				2071DB802B3A57F8009C027C /* LoadExpensesUseCase.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -118,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				2071DB722B3A493E009C027C /* DeviceRepository.swift */,
+				2071DB7D2B3A574A009C027C /* ExpensesRepository.swift */,
+				2071DB7A2B3A5611009C027C /* DataSources */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -130,6 +139,22 @@
 				2071DB762B3A542A009C027C /* Presentation */,
 			);
 			path = Clean;
+			sourceTree = "<group>";
+		};
+		2071DB7A2B3A5611009C027C /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				2071DB7B2B3A561E009C027C /* ExpensesDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		2071DB7F2B3A57E6009C027C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2071DB6B2B3A35E4009C027C /* ExpenseItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		20C80D282B2FA9020050DF44 = {
@@ -319,11 +344,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2071DB7C2B3A561E009C027C /* ExpensesDataSource.swift in Sources */,
 				2071DB6E2B3A3667009C027C /* ExpensesViewModel.swift in Sources */,
 				20C80D372B2FA9020050DF44 /* ExpensesView.swift in Sources */,
+				2071DB812B3A57F8009C027C /* LoadExpensesUseCase.swift in Sources */,
 				2071DB712B3A3FFA009C027C /* AddExpensesView.swift in Sources */,
 				2071DB6C2B3A35E4009C027C /* ExpenseItem.swift in Sources */,
 				20C80D352B2FA9020050DF44 /* RemovingRowsApp.swift in Sources */,
+				2071DB7E2B3A574A009C027C /* ExpensesRepository.swift in Sources */,
 				2071DB732B3A493E009C027C /* DeviceRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

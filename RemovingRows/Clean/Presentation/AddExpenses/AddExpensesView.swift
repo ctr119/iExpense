@@ -13,9 +13,7 @@ struct AddExpensesView: View {
     @State private var amount = 0.0
     
     var sharedViewModel: ExpensesViewModel
-
-    let types = ["Business", "Personal"]
-
+    
     var body: some View {
         NavigationStack {
             Form {
