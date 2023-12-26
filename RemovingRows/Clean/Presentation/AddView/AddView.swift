@@ -42,6 +42,6 @@ struct AddView: View {
     }
 }
 
-#Preview {
-    AddView(expenses: .mock)
-}
+//#Preview {
+//    AddView(expenses: .mock)
+//}

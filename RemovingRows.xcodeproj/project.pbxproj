@@ -83,7 +83,6 @@
 		2071DB6A2B3A35D1009C027C /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
-				2071DB6B2B3A35E4009C027C /* ExpenseItem.swift */,
 				2071DB6D2B3A3667009C027C /* Expenses.swift */,
 			);
 			path = Expenses;
@@ -95,6 +94,42 @@
 				2071DB702B3A3FFA009C027C /* AddView.swift */,
 			);
 			path = AddView;
+			sourceTree = "<group>";
+		};
+		2071DB762B3A542A009C027C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				20C80D362B2FA9020050DF44 /* ContentView.swift */,
+				2071DB6F2B3A3FEE009C027C /* AddView */,
+				2071DB6A2B3A35D1009C027C /* Expenses */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2071DB772B3A5430009C027C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2071DB6B2B3A35E4009C027C /* ExpenseItem.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		2071DB782B3A5435009C027C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2071DB722B3A493E009C027C /* DeviceRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2071DB792B3A543C009C027C /* Clean */ = {
+			isa = PBXGroup;
+			children = (
+				2071DB782B3A5435009C027C /* Data */,
+				2071DB772B3A5430009C027C /* Domain */,
+				2071DB762B3A542A009C027C /* Presentation */,
+			);
+			path = Clean;
 			sourceTree = "<group>";
 		};
 		20C80D282B2FA9020050DF44 = {
@@ -121,12 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				20C80D3A2B2FA9020050DF44 /* RemovingRows.entitlements */,
-				20C80D362B2FA9020050DF44 /* ContentView.swift */,
-				2071DB722B3A493E009C027C /* DeviceRepository.swift */,
 				20C80D342B2FA9020050DF44 /* RemovingRowsApp.swift */,
 				20C80D382B2FA9020050DF44 /* Assets.xcassets */,
-				2071DB6F2B3A3FEE009C027C /* AddView */,
-				2071DB6A2B3A35D1009C027C /* Expenses */,
+				2071DB792B3A543C009C027C /* Clean */,
 				20C80D3B2B2FA9020050DF44 /* Preview Content */,
 			);
 			path = RemovingRows;
