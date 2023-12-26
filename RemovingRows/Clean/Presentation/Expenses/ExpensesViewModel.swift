@@ -3,27 +3,30 @@ import SwiftUI
 //class ExpensesViewModel: ObservableObject {
 @Observable
 class ExpensesViewModel {
-    var expenses: [ExpenseItem] = []
+    private(set) var expenses: [ExpenseItem] = []
     
     private let loadExpensesUseCase: LoadExpensesUseCase
+    private let saveExpensesUseCase: SaveExpensesUseCase
     
-    init(loadExpensesUseCase: LoadExpensesUseCase = .init()) {
+    init(loadExpensesUseCase: LoadExpensesUseCase = .init(),
+         saveExpensesUseCase: SaveExpensesUseCase = .init()) {
         self.loadExpensesUseCase = loadExpensesUseCase
+        self.saveExpensesUseCase = saveExpensesUseCase
     }
     
     func onAppear() {
         expenses = loadExpensesUseCase()
     }
     
-    func submitChanges() {
-        // TODO: Call the right Use Case for storing the data
+    func add(expenses: [ExpenseItem]) {
+        self.expenses.append(contentsOf: expenses)
+        
+        saveExpensesUseCase(self.expenses)
     }
     
-//    var items = [ExpenseItem]() {
-//        didSet {
-//            if let data = try? JSONEncoder().encode(items) {
-//                UserDefaults.standard.setValue(data, forKey: "Items")
-//            }
-//        }
-//    }
+    func removeExpense(at indexSet: IndexSet) {
+        expenses.remove(atOffsets: indexSet)
+        
+        saveExpensesUseCase(expenses)
+    }
 }

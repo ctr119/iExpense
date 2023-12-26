@@ -16,5 +16,9 @@ class ExpensesRepository {
         return []
     }
     
-    // TODO: Save expenses
+    func saveExpenses(_ expenses: [ExpenseItem]) {
+        if let data = try? JSONEncoder().encode(expenses) {
+            dataSource.saveItems(data)
+        }
+    }
 }

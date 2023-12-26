@@ -20,13 +20,13 @@ struct ExpensesView: View {
                         ExpenseRowView(display: $0.toExpenseRowDisplay)
                     }
                     .onDelete { indexSet in
-                        viewModel.expenses.remove(atOffsets: indexSet)
+                        viewModel.removeExpense(at: indexSet)
                     }
                 }
             }
             .navigationTitle("iExpense")
             .toolbar {
-                Button("Add Expense", systemImage: "plus") {
+                Button("Add Expenses", systemImage: "plus") {
                     isAddExpenseScreenPresented = true
                 }
             }

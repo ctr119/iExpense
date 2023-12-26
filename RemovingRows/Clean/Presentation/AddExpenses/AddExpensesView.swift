@@ -28,12 +28,12 @@ struct AddExpensesView: View {
                 TextField("Amount", value: $amount, format: .currency(code: deviceRepository.getCurrencyCode()))
                     .keyboardType(.decimalPad)
             }
-            .navigationTitle("Add new expense")
+            .navigationTitle("Add New Expense")
         }
         .toolbar {
             Button("Save") {
                 let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
-                sharedViewModel.expenses.append(newExpense)
+                sharedViewModel.add(expenses: [newExpense])
                 dismiss()
             }
         }
