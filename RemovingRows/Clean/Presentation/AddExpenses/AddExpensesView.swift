@@ -29,17 +29,23 @@ struct AddExpensesView: View {
                     .keyboardType(.decimalPad)
             }
             .navigationTitle("Add New Expense")
-        }
-        .toolbar {
-            Button("Save") {
-                let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
-                sharedViewModel.add(expenses: [newExpense])
-                dismiss()
+            .toolbar {
+                Button("Save") {
+                    let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
+                    sharedViewModel.add(expenses: [newExpense])
+                    dismiss()
+                }
             }
         }
     }
 }
 
-//#Preview {
-//    AddView(expenses: .mock)
-//}
+#Preview {
+    AddExpensesView(
+        sharedViewModel: ExpensesViewModel(
+            loadExpensesUseCase: .mock,
+            saveExpensesUseCase: .mock
+        )
+    )
+    .environmentObject(DeviceRepository())
+}

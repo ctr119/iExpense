@@ -18,3 +18,17 @@ class SaveExpensesUseCase {
         repository.saveExpenses(expenses)
     }
 }
+
+#if DEBUG
+extension SaveExpensesUseCase {
+    static var mock: SaveExpensesUseCase {
+        SaveExpensesUseCaseMock()
+    }
+}
+
+class SaveExpensesUseCaseMock: SaveExpensesUseCase {
+    override func callAsFunction(_ expenses: [ExpenseItem]) {
+        // Empty
+    }
+}
+#endif
