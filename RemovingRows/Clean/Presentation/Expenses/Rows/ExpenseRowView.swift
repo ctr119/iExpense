@@ -9,12 +9,20 @@ import SwiftUI
 
 struct ExpenseRowView: View {
     struct Display {
-        let name: String
-        let type: String
-        let amount: Double
-        let emoji: String
-        let foregroundColor: Color
-        let currencyCode: String
+        struct Info {
+            let name: String
+            let type: String
+            let amount: Double
+        }
+        
+        struct Formatting {
+            let emoji: String
+            let foregroundColor: Color
+            let currencyCode: String
+        }
+        
+        let info: Info
+        let formatting: Formatting
     }
     
     let display: Display
@@ -22,32 +30,33 @@ struct ExpenseRowView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(display.name)
+                Text(display.info.name)
                     .font(.body)
                 
-                Text(display.type)
+                Text(display.info.type)
                     .font(.caption.italic())
             }
             
             Spacer()
             
-            Text(display.emoji)
+            Text(display.formatting.emoji)
             
-            Text(display.amount, format: .currency(code: display.currencyCode))
-                .foregroundStyle(display.foregroundColor)
-                .bold(display.foregroundColor == .red)
+            Text(display.info.amount,
+                 format: .currency(code: display.formatting.currencyCode))
+                .foregroundStyle(display.formatting.foregroundColor)
+                .bold(display.formatting.foregroundColor == .red)
         }
-        .padding()
     }
 }
 
 #Preview {
     ExpenseRowView(display: .init(
-        name: "Cost",
-        type: "Any type",
-        amount: 159,
-        emoji: "🔥",
-        foregroundColor: .red,
-        currencyCode: "EUR")
-    )
+        info: .init(name: "Expense",
+                    type: "Travel",
+                    amount: 159),
+        formatting: .init(emoji: "✈️",
+                          foregroundColor: .red,
+                          currencyCode: "EUR")
+    ))
+    .padding()
 }

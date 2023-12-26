@@ -11,12 +11,15 @@ extension ExpenseItem {
     var toExpenseRowDisplay: ExpenseRowView.Display {
         let display = display(for: self.amount)
         
-        return .init(name: self.name,
-                     type: self.type.rawValue,
-                     amount: self.amount,
-                     emoji: display.emoji,
-                     foregroundColor: display.color,
-                     currencyCode: Locale.current.currency?.identifier ?? "EUR")
+        
+        return .init(
+            info: .init(name: self.name,
+                        type: self.type.rawValue,
+                        amount: self.amount),
+            formatting: .init(emoji: display.emoji,
+                              foregroundColor: display.color,
+                              currencyCode: Locale.current.currency?.identifier ?? "EUR")
+        )
     }
     
     private func display(for amount: Double) -> (emoji: String, color: Color) {
