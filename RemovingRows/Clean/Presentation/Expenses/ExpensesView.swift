@@ -14,15 +14,34 @@ struct ExpensesView: View {
                 ///     we must put the items inside a ForEach.
                 
                 List {
-                    ForEach(viewModel.expenses) {
-                        ExpenseRowView(
-                            display: $0.toExpenseRowDisplay(
-                                currencyCode: viewModel.currencyCode
+                    Section {
+                        ForEach(viewModel.personalExpenses) {
+                            ExpenseRowView(
+                                display: $0.toExpenseRowDisplay(
+                                    currencyCode: viewModel.currencyCode
+                                )
                             )
-                        )
+                        }
+                        .onDelete { indexSet in
+                            viewModel.removeExpenses(from: indexSet, ofKind: .personal)
+                        }
+                    } header: {
+                        Text("Personal expenses")
                     }
-                    .onDelete { indexSet in
-                        viewModel.removeExpense(at: indexSet)
+                
+                    Section {
+                        ForEach(viewModel.businessExpenses) {
+                            ExpenseRowView(
+                                display: $0.toExpenseRowDisplay(
+                                    currencyCode: viewModel.currencyCode
+                                )
+                            )
+                        }
+                        .onDelete { indexSet in
+                            viewModel.removeExpenses(from: indexSet, ofKind: .business)
+                        }
+                    } header: {
+                        Text("Business expenses")
                     }
                 }
             }
