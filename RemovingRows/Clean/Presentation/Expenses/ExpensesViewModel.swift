@@ -4,6 +4,9 @@ import SwiftUI
 @Observable
 class ExpensesViewModel {
     private(set) var expenses: [ExpenseItem] = []
+    var currencyCode: String {
+        Locale.current.currency?.identifier ?? "EUR"
+    }
     
     private let loadExpensesUseCase: LoadExpensesUseCase
     private let saveExpensesUseCase: SaveExpensesUseCase

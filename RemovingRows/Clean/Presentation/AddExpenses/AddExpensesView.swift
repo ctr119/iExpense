@@ -6,7 +6,6 @@ struct AddExpensesView: View {
     /// ...
     /// presentationMode.wrappedValue.dismiss()
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var deviceRepository: DeviceRepository
     
     @State private var name = ""
     @State private var kind: ExpenseItem.Kind = .personal
@@ -28,7 +27,9 @@ struct AddExpensesView: View {
                     }
                 }
                 
-                TextField("Amount", value: $amount, format: .currency(code: deviceRepository.getCurrencyCode()))
+                TextField("Amount", 
+                          value: $amount,
+                          format: .currency(code: sharedViewModel.currencyCode))
                     .keyboardType(.decimalPad)
             }
             .navigationTitle("Add New Expense")
@@ -69,5 +70,4 @@ struct AddExpensesView: View {
             saveExpensesUseCase: .mock
         )
     )
-    .environmentObject(DeviceRepository())
 }

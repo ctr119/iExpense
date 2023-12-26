@@ -4,8 +4,6 @@ struct ExpensesView: View {
     @State var viewModel = ExpensesViewModel()
     @State private var isAddExpenseScreenPresented = false
     
-    private let deviceRepository = DeviceRepository()
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,7 +15,11 @@ struct ExpensesView: View {
                 
                 List {
                     ForEach(viewModel.expenses) {
-                        ExpenseRowView(display: $0.toExpenseRowDisplay)
+                        ExpenseRowView(
+                            display: $0.toExpenseRowDisplay(
+                                currencyCode: viewModel.currencyCode
+                            )
+                        )
                     }
                     .onDelete { indexSet in
                         viewModel.removeExpense(at: indexSet)
@@ -36,7 +38,6 @@ struct ExpensesView: View {
         }
         .sheet(isPresented: $isAddExpenseScreenPresented, content: {
             AddExpensesView(sharedViewModel: viewModel)
-                .environmentObject(deviceRepository)
         })
     }
 }

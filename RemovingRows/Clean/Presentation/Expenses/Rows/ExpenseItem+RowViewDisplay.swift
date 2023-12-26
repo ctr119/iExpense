@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension ExpenseItem {
-    var toExpenseRowDisplay: ExpenseRowView.Display {
+    func toExpenseRowDisplay(currencyCode: String) -> ExpenseRowView.Display {
         let display = display(for: self.amount)
         
         
@@ -18,7 +18,7 @@ extension ExpenseItem {
                         amount: self.amount),
             formatting: .init(emoji: display.emoji,
                               foregroundColor: display.color,
-                              currencyCode: Locale.current.currency?.identifier ?? "EUR")
+                              currencyCode: currencyCode)
         )
     }
     
