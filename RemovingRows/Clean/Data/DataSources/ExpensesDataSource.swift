@@ -2,7 +2,7 @@ import Foundation
 
 class ExpensesDataSource {
     private enum Keys: String {
-        case expenses = "items"
+        case expenses = "Items"
     }
     
     private let store: UserDefaults

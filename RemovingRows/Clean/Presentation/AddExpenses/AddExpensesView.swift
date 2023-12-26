@@ -33,7 +33,7 @@ struct AddExpensesView: View {
         .toolbar {
             Button("Save") {
                 let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
-                sharedViewModel.items.append(newExpense)
+                sharedViewModel.expenses.append(newExpense)
                 dismiss()
             }
         }

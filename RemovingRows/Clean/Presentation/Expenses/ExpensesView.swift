@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExpensesView: View {
-    @State private var viewModel = ExpensesViewModel()
+    @State var viewModel = ExpensesViewModel()
     @State private var isAddExpenseScreenPresented = false
     
     private let deviceRepository = DeviceRepository()
@@ -16,20 +16,23 @@ struct ExpensesView: View {
                 ///     we must put the items inside a ForEach.
                 
                 List {
-                    ForEach(viewModel.items) {
+                    ForEach(viewModel.expenses) {
                         expenseRow($0)
                     }
                     .onDelete { indexSet in
-                        viewModel.items.remove(atOffsets: indexSet)
-                    }
-                }
-                .navigationTitle("iExpense")
-                .toolbar {
-                    Button("Add Expense", systemImage: "plus") {
-                        isAddExpenseScreenPresented = true
+                        viewModel.expenses.remove(atOffsets: indexSet)
                     }
                 }
             }
+            .navigationTitle("iExpense")
+            .toolbar {
+                Button("Add Expense", systemImage: "plus") {
+                    isAddExpenseScreenPresented = true
+                }
+            }
+        }
+        .onAppear {
+            viewModel.onAppear()
         }
         .sheet(isPresented: $isAddExpenseScreenPresented, content: {
             AddExpensesView(sharedViewModel: viewModel)
@@ -72,8 +75,6 @@ struct ExpensesView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpensesView()
-    }
+#Preview {
+    ExpensesView(viewModel: .init(loadExpensesUseCase: .mock))
 }
