@@ -11,7 +11,7 @@ import SwiftUI
 struct RemovingRowsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ExpensesView()
         }
     }
 }

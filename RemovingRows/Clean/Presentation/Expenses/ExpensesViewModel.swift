@@ -1,8 +1,8 @@
 import SwiftUI
 
-//class Expenses: ObservableObject {
+//class ExpensesViewModel: ObservableObject {
 @Observable
-class Expenses {
+class ExpensesViewModel {
     var items = [ExpenseItem]() {
         didSet {
             if let data = try? JSONEncoder().encode(items) {
@@ -22,14 +22,14 @@ class Expenses {
     }
 }
 
-extension Expenses {
-    static var mock: Expenses {
-        let exp = Expenses()
-        exp.items = [
-            ExpenseItem(name: "Restaurant", type: .personal, amount: 24.3),
-            ExpenseItem(name: "Transport", type: .business, amount: 4.33),
-            ExpenseItem(name: "Hotel", type: .business, amount: 400)
-        ]
-        return exp
-    }
-}
+//extension ExpensesViewModel {
+//    static var mock: ExpensesViewModel {
+//        let exp = ExpensesViewModel()
+//        exp.items = [
+//            ExpenseItem(name: "Restaurant", type: .personal, amount: 24.3),
+//            ExpenseItem(name: "Transport", type: .business, amount: 4.33),
+//            ExpenseItem(name: "Hotel", type: .business, amount: 400)
+//        ]
+//        return exp
+//    }
+//}

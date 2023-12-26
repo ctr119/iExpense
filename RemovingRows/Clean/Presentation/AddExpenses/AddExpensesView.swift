@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AddView: View {
+struct AddExpensesView: View {
     
     /// @Environment(\.presentationMode) var presentationMode
     /// ...
@@ -12,7 +12,7 @@ struct AddView: View {
     @State private var kind: ExpenseItem.Kind = .personal
     @State private var amount = 0.0
     
-    var expenses: Expenses
+    var sharedViewModel: ExpensesViewModel
 
     let types = ["Business", "Personal"]
 
@@ -35,7 +35,7 @@ struct AddView: View {
         .toolbar {
             Button("Save") {
                 let newExpense = ExpenseItem(name: name, type: kind, amount: amount)
-                expenses.items.append(newExpense)
+                sharedViewModel.items.append(newExpense)
                 dismiss()
             }
         }
