@@ -1,4 +1,4 @@
-# Hola! 👋 👾 🎲 👨‍💻 
+# Hola! 👋 👾 🎲 
 
 This project is about a simple and tiny app that lets you save your expenses :money_with_wings: letting you specify whether they are business related :briefcase: or personal :see_no_evil:
 
